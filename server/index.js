@@ -5,6 +5,8 @@ import { configDotenv } from "dotenv";
 
 import { sequelize } from "./db/db.js";
 import { models } from "./models/models.js";
+import router from "./router/router.js";
+import { errorHandleMiddleware } from "./middleware/errorHandleMiddleware.js";
 
 configDotenv();
 models;
@@ -15,6 +17,9 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 app.use(fileUpload({}));
+app.use("/api", router);
+
+app.use(errorHandleMiddleware);
 
 const startServer = async () => {
   try {
