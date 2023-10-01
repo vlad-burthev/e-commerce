@@ -10,19 +10,19 @@ export const checkRoleMiddleware = (role) => {
     try {
       const token = req.headers.authorization;
       if (!token) {
-        return next(errorApi.unauthorized("Unauthorized"));
+        return next(errorApi.unauthorized("Неавторизований"));
       }
 
       const decodeToken = decodeTokenHandler(token);
 
       if (decodeToken.role !== role) {
-        return next(errorApi.unauthorized("Not enough rights"));
+        return next(errorApi.unauthorized("Недостатньо прав"));
       }
 
       req.user = decodeToken;
       next();
     } catch (error) {
-      return next(errorApi.badRequest("Not enough rights"));
+      return next(errorApi.badRequest(error.message));
     }
   };
 };

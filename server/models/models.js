@@ -104,11 +104,11 @@ Device_Info.belongsTo(Device);
 Device.hasMany(Rating);
 Rating.belongsTo(Device);
 
-Device.hasOne(Brand);
-Brand.belongsTo(Device);
+Type.hasMany(Device);
+Device.belongsTo(Type);
 
-Device.hasOne(Type);
-Type.belongsTo(Device);
+Brand.hasMany(Device);
+Device.belongsTo(Brand);
 
 Brand.belongsToMany(Type, { through: BrandType });
 Type.belongsToMany(Brand, { through: BrandType });

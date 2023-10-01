@@ -10,7 +10,7 @@ export const checkAuthMiddleware = (req, res, next) => {
     const token = req.headers.authorization;
 
     if (!token) {
-      return next(ApiError.unauthorized("Unauthorized"));
+      return next(ApiError.unauthorized("Неавторизований"));
     }
 
     const decodeToken = decodeTokenHandler(token);

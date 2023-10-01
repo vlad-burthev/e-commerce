@@ -1,14 +1,18 @@
 import { Router } from "express";
 import { userRouter } from "./userRouter.js";
+import { typeRouter } from "./typeRouter.js";
+import { brandRouter } from "./brandRouter.js";
+import { cartRouter } from "./cartRouter.js";
+import { deviceRouter } from "./deviceRouter.js";
 
 const router = Router();
 
 router.use("/user", userRouter);
-// router.use("/cart",);
+router.use("/cart", cartRouter);
 // router.use("/order",);
-// router.use("/device",);
+router.use("/device", deviceRouter);
 // router.use("/rating",);
-// router.use("/brand",);
-// router.use("/type",);
+router.use("/brand", brandRouter);
+router.use("/type", typeRouter);
 
 export default router;
