@@ -86,7 +86,7 @@ export const Device_Info = sequelize.define("device_info", {
 User.hasOne(Cart, { onDelete: "CASCADE" });
 Cart.belongsTo(User);
 
-Cart.hasMany(Cart_Device, { onDelete: "CASCADE" });
+Cart.hasMany(Cart_Device, { as: "cart_device", onDelete: "CASCADE" });
 Cart_Device.belongsTo(Cart);
 
 User.hasMany(Order, { onDelete: "CASCADE" });
@@ -98,10 +98,10 @@ Order_Device.belongsTo(Order);
 User.hasMany(Rating);
 Rating.belongsTo(User);
 
-Device.hasMany(Device_Info);
+Device.hasMany(Device_Info, { as: "info" });
 Device_Info.belongsTo(Device);
 
-Device.hasMany(Rating);
+Device.hasMany(Rating, { foreignKey: "deviceId" });
 Rating.belongsTo(Device);
 
 Type.hasMany(Device);

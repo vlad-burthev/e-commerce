@@ -27,6 +27,7 @@
     "pg": "^8.11.3",
     "pg-hstore": "^2.3.4",
     "sequelize": "^6.33.0",
+    "sharp": "^0.32.6",
     "uuid": "^9.0.1"
   },
   "devDependencies": {
