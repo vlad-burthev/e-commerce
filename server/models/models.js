@@ -8,31 +8,55 @@ export const User = sequelize.define("user", {
   role: { type: DataTypes.STRING, allowNull: false, defaultValue: "USER" },
 });
 
-export const Brand = sequelize.define("brand", {
-  id: { type: DataTypes.INTEGER, autoIncrement: true, primaryKey: true },
-  name: { type: DataTypes.STRING, allowNull: false, unique: true },
-});
-
-export const Type = sequelize.define("type", {
-  id: { type: DataTypes.INTEGER, autoIncrement: true, primaryKey: true },
-  name: { type: DataTypes.STRING, allowNull: false, unique: true },
-});
-
-export const Cart = sequelize.define("cart", {
-  id: { type: DataTypes.INTEGER, autoIncrement: true, primaryKey: true },
-  amount: {
-    type: DataTypes.INTEGER,
-    allowNull: false,
-    defaultValue: 0,
+export const Brand = sequelize.define(
+  "brand",
+  {
+    id: { type: DataTypes.INTEGER, autoIncrement: true, primaryKey: true },
+    name: { type: DataTypes.STRING, allowNull: false, unique: true },
   },
-  // user_id
-});
+  {
+    timestamps: false,
+  }
+);
 
-export const Cart_Device = sequelize.define("cart_device", {
-  id: { type: DataTypes.INTEGER, autoIncrement: true, primaryKey: true },
-  device_id: { type: DataTypes.INTEGER, allowNull: false },
-  //cart_id
-});
+export const Type = sequelize.define(
+  "type",
+  {
+    id: { type: DataTypes.INTEGER, autoIncrement: true, primaryKey: true },
+    name: { type: DataTypes.STRING, allowNull: false, unique: true },
+  },
+  {
+    timestamps: false,
+  }
+);
+
+export const Cart = sequelize.define(
+  "cart",
+  {
+    id: { type: DataTypes.INTEGER, autoIncrement: true, primaryKey: true },
+    amount: {
+      type: DataTypes.INTEGER,
+      allowNull: false,
+      defaultValue: 0,
+    },
+    // user_id
+  },
+  {
+    timestamps: false,
+  }
+);
+
+export const Cart_Device = sequelize.define(
+  "cart_device",
+  {
+    id: { type: DataTypes.INTEGER, autoIncrement: true, primaryKey: true },
+    device_id: { type: DataTypes.INTEGER, allowNull: false },
+    //cart_id
+  },
+  {
+    timestamps: false,
+  }
+);
 
 export const Order = sequelize.define("order", {
   id: { type: DataTypes.INTEGER, autoIncrement: true, primaryKey: true },
@@ -49,39 +73,69 @@ export const Order = sequelize.define("order", {
   // user_id
 });
 
-export const Order_Device = sequelize.define("order_device", {
-  id: { type: DataTypes.INTEGER, autoIncrement: true, primaryKey: true },
-  device_id: { type: DataTypes.INTEGER, allowNull: false },
-  //cart_id
-});
+export const Order_Device = sequelize.define(
+  "order_device",
+  {
+    id: { type: DataTypes.INTEGER, autoIncrement: true, primaryKey: true },
+    device_id: { type: DataTypes.INTEGER, allowNull: false },
+    //cart_id
+  },
+  {
+    timestamps: false,
+  }
+);
 
-export const BrandType = sequelize.define("brand_type", {
-  id: { type: DataTypes.INTEGER, autoIncrement: true, primaryKey: true },
-});
+export const BrandType = sequelize.define(
+  "brand_type",
+  {
+    id: { type: DataTypes.INTEGER, autoIncrement: true, primaryKey: true },
+  },
+  {
+    timestamps: false,
+  }
+);
 
-export const Rating = sequelize.define("rating", {
-  id: { type: DataTypes.INTEGER, autoIncrement: true, primaryKey: true },
-  mark: { type: DataTypes.INTEGER, allowNull: false, defaultValue: 0 },
-  //user_id
-  //device_id
-});
+export const Rating = sequelize.define(
+  "rating",
+  {
+    id: { type: DataTypes.INTEGER, autoIncrement: true, primaryKey: true },
+    mark: { type: DataTypes.INTEGER, allowNull: false, defaultValue: 0 },
+    //user_id
+    //device_id
+  },
+  {
+    timestamps: false,
+  }
+);
 
-export const Device = sequelize.define("device", {
-  id: { type: DataTypes.INTEGER, autoIncrement: true, primaryKey: true },
-  slug: { type: DataTypes.STRING, allowNull: false, unique: true },
-  name: { type: DataTypes.STRING, allowNull: false, unique: true },
-  price: { type: DataTypes.INTEGER, allowNull: false },
-  discount: { type: DataTypes.INTEGER, allowNull: false, defaultValue: 0 },
-  img: { type: DataTypes.STRING, allowNull: false, unique: true },
-  //brand_id
-  //type_id
-});
+export const Device = sequelize.define(
+  "device",
+  {
+    id: { type: DataTypes.INTEGER, autoIncrement: true, primaryKey: true },
+    slug: { type: DataTypes.STRING, allowNull: false, unique: true },
+    name: { type: DataTypes.STRING, allowNull: false, unique: true },
+    price: { type: DataTypes.INTEGER, allowNull: false },
+    discount: { type: DataTypes.INTEGER, allowNull: false, defaultValue: 0 },
+    img: { type: DataTypes.STRING, allowNull: false, unique: true },
+    //brand_id
+    //type_id
+  },
+  {
+    timestamps: false,
+  }
+);
 
-export const Device_Info = sequelize.define("device_info", {
-  id: { type: DataTypes.INTEGER, autoIncrement: true, primaryKey: true },
-  title: { type: DataTypes.STRING, allowNull: false },
-  description: { type: DataTypes.STRING, allowNull: false },
-});
+export const Device_Info = sequelize.define(
+  "device_info",
+  {
+    id: { type: DataTypes.INTEGER, autoIncrement: true, primaryKey: true },
+    title: { type: DataTypes.STRING, allowNull: false },
+    description: { type: DataTypes.STRING, allowNull: false },
+  },
+  {
+    timestamps: false,
+  }
+);
 
 User.hasOne(Cart, { onDelete: "CASCADE" });
 Cart.belongsTo(User);
