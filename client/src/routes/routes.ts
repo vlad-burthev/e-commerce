@@ -1,12 +1,16 @@
-import AccountPage from "../pages/AccountPage/AccountPage";
-import AdminPage from "../pages/AdminPage/AdminPage";
-import CartPage from "../pages/CartPage/CartPage";
-import DevicePage from "../pages/DevicePage/DevicePage";
-import LogInPage from "../pages/LogInPage/LogInPage";
-import NotFound from "../pages/NotFound/NotFound";
-import OrderPage from "../pages/OrdersPage/OrdersPage";
-import ShopPage from "../pages/ShopPage/ShopPage";
-import SigInPage from "../pages/SigInPage/SigInPage";
+import { lazy } from "react";
+
+import ShopPage from "@/pages/ShopPage/ShopPage";
+
+const OrdersPage = lazy(() => import("@/pages/OrdersPage/OrdersPage"));
+const NotFound = lazy(() => import("@/pages/NotFound/NotFound"));
+const LogInPage = lazy(() => import("@/pages/LogInPage/LogInPage"));
+const DevicePage = lazy(() => import("@/pages/DevicePage/DevicePage"));
+const CartPage = lazy(() => import("@/pages/CartPage/CartPage"));
+const AdminPage = lazy(() => import("@/pages/AdminPage/AdminPage"));
+const AccountPage = lazy(() => import("@/pages/AccountPage/AccountPage"));
+const SignUpPage = lazy(() => import("@/pages/SignUpPage/SignUpPage"));
+
 import {
   ACCOUNT_PAGE_ROUTE,
   ADMIN_PAGE_ROUTE,
@@ -21,13 +25,15 @@ import {
 export const publicRoutes = [
   { path: SHOP_PAGE_ROUTE, Element: ShopPage },
   { path: DEVICE_PAGE_ROUTE + "/:slug", Element: DevicePage },
-  { path: SIGIN_Page_ROUTE, Element: SigInPage },
+  { path: SIGIN_Page_ROUTE, Element: SignUpPage },
   { path: LOGIN_PAGE_ROUTE, Element: LogInPage },
   { path: "*", Element: NotFound },
 ];
 export const privatRoutes = [
   { path: CART_PAGE_ROUTE + "/:cartId", Element: CartPage },
-  { path: ORDERS_PAGE_ROUTE + "/:orderId", Element: OrderPage },
+  { path: ORDERS_PAGE_ROUTE + "/:orderId", Element: OrdersPage },
   { path: ACCOUNT_PAGE_ROUTE + "/:userName", Element: AccountPage },
 ];
-export const adminRoutes = [{ path: ADMIN_PAGE_ROUTE, Element: AdminPage }];
+export const adminRoutes = [
+  { path: ADMIN_PAGE_ROUTE + "/*", Element: AdminPage },
+];
